@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo%20Mono');
+$primary: rgb(36, 44, 84);
+$secondary: rgb(198, 42, 42);
+
+* {
+    font-family: 'Chivo Mono';
+    color: $primary;
+}
+
+
+
+button,
+input {
+    padding: 5px 10px;
+    background: #fff;
+    border: 3px $primary solid;
+    margin: 0 10px 10px 0;
+    font-size: 16px;
+    border-radius: 0;
+    box-shadow: 4px 4px 0px $secondary ;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 64px;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 0px $secondary ;
+}
+
+button {
+    font-weight: 600;
+    transition: all 0.5s ease;
+
+    &.invert:not(&:hover),
+    &:hover {
+        background: $primary;
+        color: #fff;
+    }
+}
+
+.teamwrapper {
+    min-height: 200px;
+    margin: 10px 0;
+    width: calc(100% - 30px);
+    border-width: 4px;
+    border-radius: 4px;
+    border-style: solid;
+    padding: 10px;
+
+
+    h4 {
+        margin: 0 0 10px;
+    }
+
+    .userwrapper {
+
+        .user {
+            min-height: 50px;
+            min-width: min(200px, calc(100% - 25px));
+            width: min-content;
+            max-width: calc(100% - 25px);
+
+            margin: 10px 0;
+            display: flex;
+            font-size: 28px;
+            padding: 10px;
+            border-style: solid;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+#team1,
+#team1 .userwrapper .user {
+    border-color: $primary;
+    color: $primary
+}
+
+#team2,
+#team2 .userwrapper .user {
+    border-color: $secondary;
+    color: $secondary
+}
