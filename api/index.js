@@ -14,8 +14,8 @@ app.use(express.json());
 const gameRouter = require('./routes/game');
 const userRouter = require('./routes/user');
 
-app.use('/api/game', gameRouter);
-app.use('/api/user', userRouter);
+app.use('/game', gameRouter);
+app.use('/user', userRouter);
 
 const port = 1234
 app.listen(port, () => console.log('Decrypto API is running on port: ' + port));
