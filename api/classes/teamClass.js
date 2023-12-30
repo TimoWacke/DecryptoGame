@@ -92,7 +92,7 @@ class Team {
     addMember(player) {
         if (this.started)
             return false
-        if (this.members.length < 2) {
+        if (this.members.length < 5) {
             this.members.push(player)
             return false
         }
