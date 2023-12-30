@@ -94,9 +94,9 @@ class Team {
             return false
         if (this.members.length < 5) {
             this.members.push(player)
-            return false
+            return true
         }
-        return true
+        return false
     }
 
     removeMember(player) {

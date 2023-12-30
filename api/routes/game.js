@@ -70,14 +70,13 @@ router.post('/join', (req, res) => {
     try {
         const myGame = games.get(req.body.game)
         const player = players.get(req.body.user)
-        var tooFull = false
         if (req.body.team != 0 && req.body.team != 1) {
             res.sendStatus(400)
             return
         }
-        tooFull = myGame.teams[req.body.team].addMember(player)
-
-        if (tooFull) {
+        let didJoin = myGame.teams[req.body.team].addMember(player)
+        console.log("join game:", myGame.id)
+        if (!didJoin) {
             res.send({ "msg": "team is already full" })
             return
         }
