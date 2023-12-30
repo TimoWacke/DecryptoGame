@@ -70,7 +70,7 @@ class Game {
 
     toJSON(playerId = null) {
         this.isWon()
-        if (playerId == null)
+        if (playerId == null || !this.started || this.winner)
             return {
                 id: this.id,
                 team1: this.teams[0].toJSON(),
