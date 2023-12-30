@@ -32,10 +32,9 @@ router.post('/create', (req, res) => {
 router.post('/info/:id', (req, res) => {
     try {
         const foundGame = games.get(req.params.id)
-        const foundPlayer = players.get(req.body.user)
         if (foundGame) {
-            if (foundPlayer) {
-                res.send(foundGame.toJSON(foundPlayer.id))
+            if (req.body.user) {
+                res.send(foundGame.toJSON(req.body.user))
             } else {
                 res.send(foundGame.toJSON())
             }

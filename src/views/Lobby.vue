@@ -63,7 +63,7 @@ export default {
     },
     joinGame() {
       const gameId = this.joinGameId
-      axios.get(vars.backend + '/game/info/' + gameId).then((response) => {
+      axios.post(vars.backend + '/game/info/' + gameId).then((response) => {
         router.push({ name: 'Game', params: { gameId: gameId } })
       })
     }

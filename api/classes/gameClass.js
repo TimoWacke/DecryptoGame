@@ -4,7 +4,7 @@ const { makeid } = require('../utils')
 
 class Game {
     constructor(player) {
-        this.id = makeid(8)
+        this.id = makeid(4)
         this.teams = [new Team(this, 0), new Team(this, 1)]
         this.teams[0].initOpponent()
         this.teams[1].initOpponent()
@@ -31,7 +31,13 @@ class Game {
     getProtocolForPlayerId(playerId) {
         const team = this.teamOfPlayerId(playerId);
         if (!team) return false;
-        return team.protocol
+        let protocol = team.protocol.toJSON()
+        // if code is not shared yet, drop it
+        if (playerId != team.members[protocol.current_author].id && team.aggreed_on_guess.internal) {
+            // drop protocol.code
+            protocol.code = null
+        }
+        return protocol
     }
 
     addOwnCommunicationForPlayerId(playerId, words) {
@@ -85,7 +91,7 @@ class Game {
             id: this.id,
             your_team: your_team.toJSON(),
             enemy_team: this.teams[enemy_team_id].toJSON(),
-            protocol: playerId != null ? (this.getProtocolForPlayerId(playerId)).toJSON() : null,
+            protocol: playerId != null ? (this.getProtocolForPlayerId(playerId)) : null,
             winner: this.winner,
             started: this.started,
         }
