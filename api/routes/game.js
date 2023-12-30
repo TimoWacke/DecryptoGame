@@ -30,13 +30,15 @@ router.post('/create', (req, res) => {
 
 })
 
-// get game by id
 router.post('/:id', (req, res) => {
     try {
         const foundGame = games.get(req.params.id)
         const foundPlayer = players.get(req.body.user)
-        if (foundGame && foundPlayer) {
-            res.send(foundGame.toJSON(foundPlayer.id))
+        if (foundGame) {
+            if (foundPlayer) {
+                res.send(foundGame.toJSON(foundPlayer.id))
+            }
+                res.send(foundGame.toJSON())
             return
         }
         res.sendStatus(404)
