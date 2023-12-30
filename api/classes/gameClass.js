@@ -70,14 +70,13 @@ class Game {
 
     toJSON(playerId) {
         this.isWon()
-        let your_team = this.teamOfPlayerId(playerId)
+        let your_team_id = this.teamOfPlayerId(playerId)
         let enemy_team_id = your_team.id == 0 ? 1 : 0
-        let enemy_team = this.teams[enemy_team_id]
         return {
             id: this.id,
-            your_team: your_team.toJSON(),
-            enemy_team: enemy_team.toJSON(),
-            protocol: this.getProtocolForPlayerId(playerId),
+            your_team: this.teams[your_team_id].toJSON(),
+            enemy_team: this.teams[enemy_team_id].toJSON(),
+            protocol: this.getProtocolForPlayerId(playerId).toJSON(),
             winner: this.winner,
             started: this.started,
         }
