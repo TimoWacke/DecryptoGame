@@ -66,7 +66,7 @@ class Protocol {
     toJSON() {
         return {
             own_round: this.own_round.toJSON(),
-            enemy_round: this.enemy_round.toJSON(),
+            enemy_communicated: this.enemy_round.communicated,
             strikes: this.strikes,
             points: this.points,
             owm_words_used: this.own_words_used,

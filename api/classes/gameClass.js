@@ -31,7 +31,7 @@ class Game {
     getProtocolForPlayerId(playerId) {
         const team = this.teamOfPlayerId(playerId);
         if (!team) return false;
-        this.getProtocolForTeam(team)
+        return team.protocol
     }
 
     addOwnCommunicationForPlayerId(playerId, words) {
@@ -68,12 +68,16 @@ class Game {
         return false
     }
 
-    toJSON() {
+    toJSON(playerId) {
         this.isWon()
+        your_team = this.teamOfPlayerId(playerId)
+        enemy_team_id = your_team.id == 0 ? 1 : 0
+        enemy_team = this.teams[enemy_team_id]
         return {
             id: this.id,
-            team1: this.teams[0].toJSON(),
-            team2: this.teams[1].toJSON(),
+            your_team: your_team.toJSON(),
+            enemy_team: enemy_team.toJSON(),
+            protocol: this.getProtocolForPlayerId(playerId),
             winner: this.winner,
             started: this.started,
         }

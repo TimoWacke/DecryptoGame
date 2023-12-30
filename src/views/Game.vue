@@ -1,5 +1,5 @@
 <template>
-  <div class="ingame">
+  <div>
     <h1>Decrypto</h1>
     <h3 v-if="!game.started">Game code: {{ game.id }}</h3>
     <div v-if="game && !game.started" class="teamselect">

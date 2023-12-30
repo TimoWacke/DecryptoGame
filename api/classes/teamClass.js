@@ -120,10 +120,7 @@ class Team {
 
     toJSON() {
         return {
-            points: this.points,
-            strikes: this.strikes,
             players: this.members.map((member) => member.name),
-            usedcodes: this.usedcodes,
         }
     }
 }
