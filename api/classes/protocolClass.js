@@ -65,7 +65,7 @@ class Protocol {
 
     toJSON() {
         let round = this.own_round.toJSON()
-        this.round["opponent_communicated"] = this.enemy_round.communicated
+        round["opponent_communicated"] = this.enemy_round.communicated
         return {
             secret_words: this.own_team.secret_words,
             round: round,
