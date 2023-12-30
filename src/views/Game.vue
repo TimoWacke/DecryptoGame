@@ -31,6 +31,18 @@
         </button>
       </div>
     </div>
+    <div v-else>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-content">
+        <div class="flip-card-front">
+          <h1>Front</h1>
+        </div>
+        <div class="flip-card-back">
+          <h1>Back</h1>
+        </div>
+      </div>
+      </div>
+    </div>
   </div>
 </template>
 
