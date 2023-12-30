@@ -37,8 +37,9 @@ router.post('/:id', (req, res) => {
         if (foundGame) {
             if (foundPlayer) {
                 res.send(foundGame.toJSON(foundPlayer.id))
-            }
+            } else {
                 res.send(foundGame.toJSON())
+            }
             return
         }
         res.sendStatus(404)
