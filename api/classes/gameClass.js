@@ -70,9 +70,9 @@ class Game {
 
     toJSON(playerId) {
         this.isWon()
-        your_team = this.teamOfPlayerId(playerId)
-        enemy_team_id = your_team.id == 0 ? 1 : 0
-        enemy_team = this.teams[enemy_team_id]
+        let your_team = this.teamOfPlayerId(playerId)
+        let enemy_team_id = your_team.id == 0 ? 1 : 0
+        let enemy_team = this.teams[enemy_team_id]
         return {
             id: this.id,
             your_team: your_team.toJSON(),
