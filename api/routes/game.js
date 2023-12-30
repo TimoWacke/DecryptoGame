@@ -27,10 +27,9 @@ router.post('/create', (req, res) => {
         console.log(err)
         res.sendStatus(500)
     }
-
 })
 
-router.post('/:id', (req, res) => {
+router.post('/info/:id', (req, res) => {
     try {
         const foundGame = games.get(req.params.id)
         const foundPlayer = players.get(req.body.user)
@@ -97,7 +96,7 @@ router.post('/leave', (req, res) => {
         var didLeave = false
         
         if (req.body.team != 0 && req.body.team != 1) {
-            res.sendStatus(400)
+            res.sendStatus(500)
             return
         }
 
@@ -107,8 +106,9 @@ router.post('/leave', (req, res) => {
             res.send({ "msg": "leaving failed" })
             return
         }
-        res.send(myGame.toJSON())
+        res.send(myGame.toJSON(req.body.user))
     } catch (err) {
+        console.log(err)
         res.sendStatus(500)
     }
 })
