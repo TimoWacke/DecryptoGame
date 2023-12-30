@@ -60,15 +60,11 @@ export default {
   methods: {
     async updateGame() {
       var me = this
-      await axios.get(vars.backend + '/game/' + this.$route.params.gameId).then((response) => {
+      await axios.post(vars.backend + '/game/' + this.$route.params.gameId, {user: me.userid}).then((response) => {
         me.game = response.data
       }).catch((error) => {
         router.push({ name: "Lobby" })
       })
-      axios.post(vars.backend + '/game/team', { user: me.userid, game: me.game.id }).then((response) => {
-        me.myTeam = response.data.team
-      })
-
     },
     joinTeam(team) {
       var me = this

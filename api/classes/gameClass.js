@@ -68,15 +68,17 @@ class Game {
         return false
     }
 
-    toJSON(playerId = null) {
+    toJSON(playerId) {
         this.isWon()
-        let your_team_id = this.teamOfPlayerId(playerId)
-        let enemy_team_id = your_team_id == 0 ? 1 : 0
+        if (playerId == null)
+            return false
+        let your_team = this.teamOfPlayerId(playerId)
+        let enemy_team_id = your_team.id == 0 ? 1 : 0
         return {
             id: this.id,
-            your_team: this.teams[your_team_id].toJSON(),
+            your_team: your_team.toJSON(),
             enemy_team: this.teams[enemy_team_id].toJSON(),
-            protocol: playerId != null ? this.getProtocolForPlayerId(playerId).toJSON() : null,
+            protocol: playerId != null ? (this.getProtocolForPlayerId(playerId)).toJSON() : null,
             winner: this.winner,
             started: this.started,
         }
@@ -93,11 +95,10 @@ class Game {
             for (var member_id in this.teams[team_id].members) {
                 const member = this.teams[team_id].members[member_id]
                 if (member.id == playerId) {
-                    return team_id
+                    return this.teams[team_id]
                 }
             }
         }
-        
         return false
     }
 }

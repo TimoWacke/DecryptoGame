@@ -31,11 +31,12 @@ router.post('/create', (req, res) => {
 })
 
 // get game by id
-router.get('/:id', (req, res) => {
+router.post('/:id', (req, res) => {
     try {
         const foundGame = games.get(req.params.id)
-        if (foundGame) {
-            res.send(foundGame.toJSON())
+        const foundPlayer = players.get(req.body.user)
+        if (foundGame && foundPlayer) {
+            res.send(foundGame.toJSON(foundPlayer.id))
             return
         }
         res.sendStatus(404)
@@ -63,25 +64,6 @@ router.post('/start', (req, res) => {
          res.sendStatus(500)
      }
 }) 
-
-
-router.post('/team', (req, res) => {
-    try {
-        const foundPlayer = players.get(req.body.user)
-        const foundGame = games.get(req.body.game)
-        if (foundPlayer && foundGame) {
-            const team = foundGame.teamOfPlayerId(foundPlayer.id)
-            if (team !== false) {
-                res.send({ team: team })
-                return
-            }
-        }
-        res.sendStatus(403)
-    } catch (err) {
-        console.log(err)
-        res.sendStatus(500)
-    }
-})
 
 router.post('/join', (req, res) => {
     try {
