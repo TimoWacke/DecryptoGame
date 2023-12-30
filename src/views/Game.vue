@@ -25,7 +25,7 @@
             <div class="user" v-for="name in game.team2.players">{{ name }}</div>
           </div>
         </div>
-        <button v-if="true || !game.started && game.team1.players.length == 2 && game.team2.players.length == 2"
+        <button v-if="!game.started && game.team1.players.length == 2 && game.team2.players.length == 2"
           @click="startGame()">
           start
         </button>
@@ -58,7 +58,7 @@ export default {
   methods: {
     async updateGame() {
       var me = this
-      await axios.post(vars.backend + '/game/' + this.$route.params.gameId, {user: me.userid}).then((response) => {
+      await axios.post(vars.backend + '/game/info/' + this.$route.params.gameId, {user: me.userid}).then((response) => {
         me.game = response.data
       }).catch((error) => {
         router.push({ name: "Lobby" })
