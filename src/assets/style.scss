@@ -82,3 +82,8 @@ button {
     border-color: $secondary;
     color: $secondary
 }
+
+.flip_card {
+    border: 1px solid $secondary;
+    perspective: 1000px;
+}
