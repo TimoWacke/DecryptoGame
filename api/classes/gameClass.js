@@ -77,6 +77,7 @@ class Game {
                 team2: this.teams[1].toJSON(),
                 winner: this.winner,
                 started: this.started,
+                your_team: this.teamOfPlayerId(playerId).id,
             }
         let your_team = this.teamOfPlayerId(playerId)
         let enemy_team_id = your_team.id == 0 ? 1 : 0

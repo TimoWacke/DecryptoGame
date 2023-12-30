@@ -11,16 +11,16 @@
       <div v-else>
         <div class="teamwrapper" id="team1">
           <h4>Team 1</h4>
-          <button v-if="game.team1.players.length < 2 && myTeam == null" @click="joinTeam(0)">join</button>
-          <button v-if="myTeam == 0" @click="leaveTeam(0)">leave</button>
+          <button v-if="game.team1.players.length < 2 && game.your_team == null" @click="joinTeam(0)">join</button>
+          <button v-if="game.your_team == 0" @click="leaveTeam(0)">leave</button>
           <div class="userwrapper">
             <div class="user" v-for="name in game.team1.players">{{ name }}</div>
           </div>
         </div>
         <div class="teamwrapper" id="team2">
           <h4>Team 2</h4>
-          <button v-if="game.team2.players.length < 2 && myTeam == null" @click="joinTeam(1)">join</button>
-          <button v-if="myTeam == 1" @click="leaveTeam(1)">leave</button>
+          <button v-if="game.team2.players.length < 2 && game.your_team == null" @click="joinTeam(1)">join</button>
+          <button v-if="game.your_team == 1" @click="leaveTeam(1)">leave</button>
           <div class="userwrapper">
             <div class="user" v-for="name in game.team2.players">{{ name }}</div>
           </div>
@@ -44,8 +44,6 @@ export default {
   data() {
     return {
       game: false,
-      myTeam: null,
-      myWords: [],
       userid: false,
       setUserName: ""
     }
