@@ -45,14 +45,14 @@ export default {
   methods: {
     createPlayer() {
       var me = this
-      axios.post(vars.backend + '/createPlayer', { name: me.setUserName }).then((response) => {
+      axios.post(vars.backend + '/user/create', { name: me.setUserName }).then((response) => {
         me.user = response.data
         $cookies.set("user-id", me.user.id)
       })
     },
     createGame() {
       var me = this
-      axios.post(vars.backend + '/createGame', { userId: me.user.id }).then((response) => {
+      axios.post(vars.backend + '/game/create', { userId: me.user.id }).then((response) => {
         const newGame = response.data
         console.log(newGame.id)
         router.push({ name: 'Game', params: { gameId: newGame.id } })
