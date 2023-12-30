@@ -10,7 +10,7 @@ class Game {
         this.teams[1].initOpponent()
         this.teams[0].addMember(player)
 
-        this.winner = false
+        this.winner = null
         this.started = false
 
         this.words_length = 4
@@ -68,10 +68,16 @@ class Game {
         return false
     }
 
-    toJSON(playerId) {
+    toJSON(playerId = null) {
         this.isWon()
         if (playerId == null)
-            return false
+            return {
+                id: this.id,
+                team1: this.teams[0].toJSON(),
+                team2: this.teams[1].toJSON(),
+                winner: this.winner,
+                started: this.started,
+            }
         let your_team = this.teamOfPlayerId(playerId)
         let enemy_team_id = your_team.id == 0 ? 1 : 0
         return {
