@@ -64,9 +64,11 @@ class Protocol {
     } 
 
     toJSON() {
+        let round = this.own_round.toJSON()
+        this.round["opponent_communicated"] = this.enemy_round.communicated
         return {
             secret_words: this.own_team.secret_words,
-            round: this.own_round.toJSON(),
+            round: round,
             strikes: this.strikes,
             points: this.points,
             own_words_used: this.own_words_used,
@@ -154,7 +156,6 @@ class Round {
         return {
             code: this.code,
             communicated: this.communicated,
-            opponent_communicated: this.enemy_round.communicated,
             internal_guess: this.internal_guess,
             opponent_guess: this.opponent_guess,
             what_opponent_thinks: this.what_opponent_thinks,
