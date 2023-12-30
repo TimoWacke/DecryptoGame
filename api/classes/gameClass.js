@@ -68,7 +68,7 @@ class Game {
         return false
     }
 
-    toJSON(playerId) {
+    toJSON(playerId = null) {
         this.isWon()
         let your_team_id = this.teamOfPlayerId(playerId)
         let enemy_team_id = your_team_id == 0 ? 1 : 0
@@ -76,7 +76,7 @@ class Game {
             id: this.id,
             your_team: this.teams[your_team_id].toJSON(),
             enemy_team: this.teams[enemy_team_id].toJSON(),
-            protocol: this.getProtocolForPlayerId(playerId).toJSON(),
+            protocol: playerId != null ? this.getProtocolForPlayerId(playerId).toJSON() : null,
             winner: this.winner,
             started: this.started,
         }

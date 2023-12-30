@@ -22,7 +22,7 @@ router.post('/create', (req, res) => {
         }
         const newGame = new Game(player)
         games.set(newGame.id, newGame)
-        res.send(newGame.toJSON())
+        res.send(newGame.toJSON(req.body.userId))
     } catch (err) {
         console.log(err)
         res.sendStatus(500)
