@@ -25,7 +25,7 @@
             <div class="user" v-for="name in game.team2.players">{{ name }}</div>
           </div>
         </div>
-        <button v-if="!game.started && game.team1.players.length == 2 && game.team2.players.length == 2"
+        <button v-if="true || !game.started && game.team1.players.length >= 2 && game.team2.players.length >= 2"
           @click="startGame()">
           start
         </button>

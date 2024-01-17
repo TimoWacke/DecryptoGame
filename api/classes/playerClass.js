@@ -17,7 +17,10 @@ class Player {
         var me = this
         this.remover = setTimeout(function () {
             try {
-                games.get(gameId).teams[team].removeMember(me.id)
+                let game = games.get(gameId)
+                if (!game) return
+                if (!game.started) 
+                    games.get(gameId).teams[team].removeMember(me.id)
             } catch {}
         }, 10000)
     }

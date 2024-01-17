@@ -121,6 +121,9 @@ class Team {
     toJSON() {
         return {
             players: this.members.map((member) => member.name),
+            current_author: this.current_author,
+            aggreed_on_guess: this.aggreed_on_guess,
+            players_aggreed: this.players_aggreed,
         }
     }
 }

@@ -33,7 +33,7 @@ class Game {
         if (!team) return false;
         let protocol = team.protocol.toJSON()
         // if code is not shared yet, drop it
-        if (playerId != team.members[protocol.current_author].id && team.aggreed_on_guess.internal) {
+        if (playerId != team.members[team.current_author].id && team.aggreed_on_guess.internal) {
             // drop protocol.code
             protocol.code = null
         }
@@ -86,6 +86,7 @@ class Game {
                 your_team: this.teamOfPlayerId(playerId).id,
             }
         let your_team = this.teamOfPlayerId(playerId)
+        console.log("your team:", your_team)
         let enemy_team_id = your_team.id == 0 ? 1 : 0
         return {
             id: this.id,
@@ -104,15 +105,14 @@ class Game {
     }
 
     teamOfPlayerId(playerId) {
-        for (var team_id = 0; team_id < this.teams.length; team_id++) {
-            for (var member_id in this.teams[team_id].members) {
-                const member = this.teams[team_id].members[member_id]
+        for (var team of this.teams) {
+            for (var member of team.members) {
                 if (member.id == playerId) {
-                    return this.teams[team_id]
+                    return team
                 }
             }
         }
-        return false
+        return null
     }
 }
 
