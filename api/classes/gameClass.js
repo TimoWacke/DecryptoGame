@@ -83,7 +83,6 @@ class Game {
                 team2: this.teams[1].toJSON(),
                 winner: this.winner,
                 started: this.started,
-                your_team: this.teamOfPlayerId(playerId).id,
             }
         let your_team = this.teamOfPlayerId(playerId)
         console.log("your team:", your_team)
